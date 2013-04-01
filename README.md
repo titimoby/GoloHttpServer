@@ -1,6 +1,7 @@
 #GoloHttpServer
 
 To learn Golo language, I decided to write a simple Http server.
+It can be used to serve static HTML pages
 
 ##What?
 
