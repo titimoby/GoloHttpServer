@@ -18,8 +18,6 @@ function sendFile = |fin, out| {
 }
 
 function run = |connectedClient, serverState| {		
-	println("dans le run, connectedClient est de type " + connectedClient:getClass():toString())
-	println("dans le run, serverState est de type " + serverState:getClass():toString())
 
 	let inFromClient = BufferedReader( InputStreamReader (connectedClient:getInputStream()))
 	let outToClient = DataOutputStream(connectedClient:getOutputStream())
@@ -126,8 +124,6 @@ function main = |args| {
 	var serverState = "running"
 	while(serverState == "running") {
 		let clientSocket = Server: accept()
-		println("avant le call clientSocket est de type " + clientSocket:getClass():toString())
-		println("avant le call serverState est de type " + serverState:getClass():toString())
 		let process = java.lang.Thread({run(serverState, clientSocket)}: to(Runnable.class))
 		process: start()
 	}
