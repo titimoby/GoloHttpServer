@@ -1,4 +1,4 @@
-module moby.GoloHttpServer
+module GoloHttpServer
 
 import java.io
 import java.net.InetAddress
@@ -7,6 +7,9 @@ import java.net
 import java.util
 import java.lang.Integer
 import java.lang
+
+# Golo modules
+import parameters
 
 function sendFile = |fin, out| {
 		let bytesRead = fin:read()
@@ -44,19 +47,17 @@ function run = |connectedClient, serverState| {
 function httpMethodHandle = |methodName, queryString, responseBuffer, outToClient| {
 	case {
 		when methodName == "GET" {
+			var fileName = queryString:replaceFirst("/", "")
 			if (queryString=="/") {
 				# The default home page
-				sendResponse(200, responseBuffer:toString(), false, outToClient)
-			} else {							
-				# This is interpreted as a file name
-				var fileName = queryString:replaceFirst("/", "")
-				fileName = URLDecoder.decode(fileName)
-				if ( File(fileName):isFile()){								
-			  		sendResponse(200, fileName, true, outToClient)
-				} else {
-			  		sendResponse(404, "<b>The Requested resource not found ...." + "Usage: http://127.0.0.1:5000 or http://127.0.0.1:5000/<fileName></b>", false, outToClient)
-				}
+				fileName = Parameters(): HOME()	
 			}
+			fileName = URLDecoder.decode(fileName)
+			if ( File(fileName):isFile()){								
+		  		sendResponse(200, fileName, true, outToClient)
+			} else {
+		  		sendResponse(404, "<b>The Requested resource not found ...." + "Usage: http://127.0.0.1:5000 or http://127.0.0.1:5000/<fileName></b>", false, outToClient)
+			}	
 		}
 		otherwise {
 			sendResponse(404, "<b>The Requested resource not found ...." + "Usage: http://127.0.0.1:5000 or http://127.0.0.1:5000/<fileName></b>", false, outToClient)
@@ -118,8 +119,8 @@ function sendResponse = |statusCode, pResponseString, isFile, outToClient| {
 
 function main = |args| {
 	let addr = InetAddress.getByName("127.0.0.1")
-	let Server = ServerSocket (5000, 10, addr)
-	println ("TCPServer Waiting for client on port 5000")
+	let Server = ServerSocket (Parameters(): HTTPPORT(), 10, addr)
+	println ("TCPServer Waiting for client on port "+Parameters(): HTTPPORT())
 
 	var serverState = "running"
 	while(serverState == "running") {
