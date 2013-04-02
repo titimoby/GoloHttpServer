@@ -3,13 +3,13 @@
 To learn Golo language, I decided to write a simple Http server.
 It can be used to serve static HTML pages
 
-###How to launch the server
+##How to launch the server
 
 No script for the moment as it's still as simple as:
 
 	`gologolo parameters.golo GoloHttpServer.golo`
 
-###Parameters
+##Parameters
 
 The file parameters.golo contains the configuration informations.
 You can edit and set:
