@@ -7,7 +7,7 @@ It can be used to serve static HTML pages
 
 No script for the moment as it's still as simple as:
 
-	`gologolo parameters.golo GoloHttpServer.golo`
+	gologolo parameters.golo GoloHttpServer.golo
 
 ##Parameters
 
