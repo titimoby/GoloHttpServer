@@ -22,10 +22,6 @@ You can edit and set:
 - Html pages must be in the same folder as GoloHttpServer.golo
 - you can use subfolders (if not, it's a bug ;) )
 
-##Contribute
-
-Any contribution is welcome, fork and pull a request, add issues, suggestions...
-
 ## License
 
     Copyright 2013 Thierry Chantier
@@ -41,6 +37,10 @@ Any contribution is welcome, fork and pull a request, add issues, suggestions...
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+##Contribute
+
+Any contribution is welcome, fork and pull a request, add issues, suggestions...
 
 And like K33g_org says:
 *have fun.*
