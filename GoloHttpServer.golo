@@ -12,7 +12,7 @@ import java.lang
 import parameters
 
 function sendFile = |fin, out| {
-		let bytesRead = fin:read()
+		var bytesRead = fin:read()
 		while (bytesRead != -1 ) {
 			out:write(bytesRead)
 			bytesRead = fin:read()
@@ -25,7 +25,7 @@ function run = |connectedClient, serverState| {
 	let inFromClient = BufferedReader( InputStreamReader (connectedClient:getInputStream()))
 	let outToClient = DataOutputStream(connectedClient:getOutputStream())
 
-	let requestString = inFromClient:readLine()
+	var requestString = inFromClient:readLine()
 	let headerLine = requestString
 
 	let tokenizer = StringTokenizer(headerLine)
@@ -75,11 +75,11 @@ function sendResponse = |statusCode, pResponseString, isFile, outToClient| {
 	let HTML_START = "<html><title>HTTP Server in java</title><body>"
 	let HTML_END = "</body></html>"
 
-	let statusLine = ""
+	var statusLine = ""
 	let serverdetails = "Server: Java HTTPServer"
-	let contentLengthLine = ""
-	let fileName = ""
-	let contentTypeLine = "Content-Type: text/html" + "\r\n"
+	var contentLengthLine = ""
+	var fileName = ""
+	var contentTypeLine = "Content-Type: text/html" + "\r\n"
 	
 	if (statusCode == 200) {
 		statusLine = "HTTP/1.1 200 OK" + "\r\n"
@@ -87,7 +87,7 @@ function sendResponse = |statusCode, pResponseString, isFile, outToClient| {
 		statusLine = "HTTP/1.1 404 Not Found" + "\r\n"
 	}
 		
-	let fileInStream = null
+	var fileInStream = null
 
 	if (isFile) {
 		fileName = responseString		
