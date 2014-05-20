@@ -20,7 +20,7 @@ function sendFile = |fin, out| {
 	    fin:close()
 }
 
-function run = |connectedClient, serverState| {		
+function run = |serverState, connectedClient| {		
 
 	let inFromClient = BufferedReader( InputStreamReader (connectedClient:getInputStream()))
 	let outToClient = DataOutputStream(connectedClient:getOutputStream())
